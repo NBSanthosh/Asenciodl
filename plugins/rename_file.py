@@ -121,6 +121,7 @@ async def rename_doc(bot, update):
             )
             try:
                 os.remove(new_file_name)
+                os.remove(progress_for_pyrogram)
             except:
                 pass
             await bot.edit_message_text(
