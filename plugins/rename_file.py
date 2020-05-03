@@ -15,7 +15,7 @@ import time
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
-    from sample_config import Config
+    from config import Config
 
 # the Strings used for this "thing"
 from translation import Translation
@@ -62,11 +62,11 @@ async def rename_doc(bot, update):
                 c_time
             )
         )
-         if the_real_download_location is not None: 
-            await bot.edit_message_text( 
-                text=Translation.SAVED_RECVD_DOC_FILE, 
-                chat_id=update.chat.id, 
-                message_id=a.message_id 
+        if the_real_download_location is not None:
+            await bot.edit_message_text(
+                text=Translation.SAVED_RECVD_DOC_FILE,
+                chat_id=update.chat.id,
+                message_id=a.message_id
             )
             if "IndianMovie" in the_real_download_location:
                 await bot.edit_message_text(
@@ -121,7 +121,7 @@ async def rename_doc(bot, update):
             )
             try:
                 os.remove(new_file_name)
-
+                os.remove(thumb_image_path)
             except:
                 pass
             await bot.edit_message_text(
