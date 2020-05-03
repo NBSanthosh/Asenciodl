@@ -64,6 +64,7 @@ async def progress_for_pyrogram(
         except:
             pass
 
+              await message.delete
 
 def humanbytes(size):
     # https://stackoverflow.com/a/49361727/4723940
