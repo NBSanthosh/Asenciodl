@@ -4,36 +4,33 @@
 
 # the logging things
 import logging
-import os
-import time
-from numpy import *
-import pyrogram
-from PIL import Image
-
-
-from helper_funcs.chat_base import TRChatBase
-# the Strings used for this "thing"
-from translation import Translation
-
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+import numpy
+import os
+from PIL import Image
+import time
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
-    from sample_config import Config
+    from config import Config
 
+# the Strings used for this "thing"
+from translation import Translation
 
+import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
+from helper_funcs.chat_base import TRChatBase
 
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["generatecustomthumbnail"]))
 async def generate_custom_thumbnail(bot, update):
-    if update.from_user.id not in Config.AUTH_USERS:
+    if update.from_user.id in Config.BANNED_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
             message_ids=update.message_id,
@@ -49,9 +46,9 @@ async def generate_custom_thumbnail(bot, update):
             list_im = os.listdir(download_location)
             if len(list_im) == 2:
                 imgs = [ Image.open(download_location + i) for i in list_im ]
-                inm_aesph = sorted([(np.sum(i.size), i.size) for i in imgs])
+                inm_aesph = sorted([(numpy.sum(i.size), i.size) for i in imgs])
                 min_shape = inm_aesph[1][1]
-                imgs_comb = np.hstack(np.asarray(i.resize(min_shape)) for i in imgs)
+                imgs_comb = numpy.hstack(numpy.asarray(i.resize(min_shape)) for i in imgs)
                 imgs_comb = Image.fromarray(imgs_comb)
                 # combine: https://stackoverflow.com/a/30228789/4723940
                 imgs_comb.save(save_final_image)
@@ -89,7 +86,7 @@ async def generate_custom_thumbnail(bot, update):
 
 @pyrogram.Client.on_message(pyrogram.Filters.photo)
 async def save_photo(bot, update):
-    if update.from_user.id not in Config.AUTH_USERS:
+    if update.from_user.id in Config.BANNED_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
             message_ids=update.message_id,
@@ -123,7 +120,7 @@ async def save_photo(bot, update):
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["deletethumbnail"]))
 async def delete_thumbnail(bot, update):
-    if update.from_user.id not in Config.AUTH_USERS:
+    if update.from_user.id in Config.BANNED_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
             message_ids=update.message_id,
