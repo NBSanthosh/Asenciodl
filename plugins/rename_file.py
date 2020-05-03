@@ -62,12 +62,6 @@ async def rename_doc(bot, update):
                 c_time
             )
         )
-        if the_real_download_location is not None:
-            await bot.edit_message_text(
-                text=Translation.SAVED_RECVD_DOC_FILE,
-                chat_id=update.chat.id,
-                message_id=a.message_id
-            )
             if "IndianMovie" in the_real_download_location:
                 await bot.edit_message_text(
                     text=Translation.RENAME_403_ERR,
@@ -85,7 +79,7 @@ async def rename_doc(bot, update):
             logger.info(the_real_download_location)
             thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
             if not os.path.exists(thumb_image_path):
-                thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+                thumb_image_path = None
             else:
                 width = 0
                 height = 0
