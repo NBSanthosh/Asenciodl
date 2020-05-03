@@ -22,7 +22,7 @@ URL | filename | username | password"""
     SAVED_RECVD_DOC_FILE = "Document Downloaded Successfully."
     CUSTOM_CAPTION_UL_FILE = " "
     NO_CUSTOM_THUMB_NAIL_FOUND = "No Custom ThumbNail found."
-    NO_VOID_FORMAT_FOUND = "no-one gonna help you\n<b>YouTubeDL</b> said: {}"
+    NO_VOID_FORMAT_FOUND = "Error\n<b>YouTubeDL</b> said: {}"
     USER_ADDED_TO_DB = "User <a href='tg://user?id={}'>{}</a> added to {} till {}."
     CURENT_PLAN_DETAILS = """Current plan details
 --------
@@ -38,8 +38,20 @@ There is No Expire Limit"""
    DFile  - Give File with Screenshots
    Video  - Give File as video without Screenshots
    File   - Give File without ScreenshotsUpload as file from any HTTP link, with custom thumbnail support</a>
---------
-Send /me to know current plan details"""
+📌 /deletethumbnail - Delete / Clear saved Custom Thumbnail
+📌 /getlink - Get Low Speed Direct Download Link
+📌 /converttoaudio - Convert Video Files in Telegram to Telegram Audios
+📌 /converttovideo - Convert to Streamable Video
+📌 /rename - (Long Press) and Rename Telegram Media
+📌 /extractstreams - Extract Streams from Telegram media
+📌 /ffmpegrobot - Get Info
+📌 /trim - (Long Press) and Enter TimeStamp
+📌 /downloadmedia - Download media to storage
+📌 /storageinfo - Get Info about currently saved Media in storage
+📌 /clearffmpegmedia - Clear stored media from storage
+📌 /unzip - Extract Compressed Files, inside Telegram
+📌 /generatecustomthumbnail - Generate Custom Thumbnail for your streamable videos
+📌 /generatescss - Generate SCreenShotS of Telegram media"""
     REPLY_TO_DOC_GET_LINK = "Reply to a Telegram media to get High Speed Direct Download Link"
     REPLY_TO_DOC_FOR_C2V = "Reply to a Telegram media to convert"
     REPLY_TO_DOC_FOR_SCSS = "Reply to a Telegram media to get screenshots"
